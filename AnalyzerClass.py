@@ -82,6 +82,12 @@ class Analyzer:
 			JSON_FILE = json.loads( r.read() )
 			
 			print("JSON_FILE:", len(JSON_FILE["applist"]["apps"]))
+			
+			if ( len(JSON_FILE["applist"]["apps"]) == 0 ):
+				print("The SteamAPI GamesList is currently empty!")
+				print("Try again later...")
+				return
+			
 			for i in range( len(JSON_FILE["applist"]["apps"]) ):
 				self._toBeProcessedGameID.append( JSON_FILE["applist"]["apps"][i]["appid"] )
 
