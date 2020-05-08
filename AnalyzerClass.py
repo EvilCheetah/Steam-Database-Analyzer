@@ -18,10 +18,10 @@ class Analyzer:
 		#Structure of _currencyList dictionary:
 		#Key:
 		#	- Name of currency						///_currencyList[CURRENCY_NAME][0]
-		#	- Place in Table(SUM)					///_currencyList[CURRENCY_NAME][1]
-		#	- Number of Games Available				///_currencyList[CURRENCY_NAME][2]
-		#	- Sale(SUM)								///_currencyList[CURRENCY_NAME][3]
-		#	- Number of Games Unavailable 			///_currencyList[CURRENCY_NAME][4]
+		#	- Place in Table(SUM)						///_currencyList[CURRENCY_NAME][1]
+		#	- Number of Games Available					///_currencyList[CURRENCY_NAME][2]
+		#	- Sale(SUM)							///_currencyList[CURRENCY_NAME][3]
+		#	- Number of Games Unavailable 					///_currencyList[CURRENCY_NAME][4]
 		#	  to purchase(Price - N/A)		
 		#	- Total Spends							///_currencyList[CURRENCY_NAME][5]
 		#
@@ -49,12 +49,12 @@ class Analyzer:
 		page = self.processTheTable(page)
 		for i in range( len(page) ):
 			self._currencyList[ page[i][0] ] = {
-					"name": 		  page[i][0], 
-					"avgPlace": 	  0.0, 
-					"numAvailable":   0, 
-					"avgModifier": 	  0.0, 
-					"numUnavailable": 0, 
-					"spends":		  0.0
+					"name": 		page[i][0], 
+					"avgPlace": 	  	0.0, 
+					"numAvailable":   	0, 
+					"avgModifier": 	  	0.0, 
+					"numUnavailable": 	0, 
+					"spends":		0.0
 					}
 
 	def getGamesList(self):
@@ -204,11 +204,11 @@ class Analyzer:
 					})
 				else:
 					writer.writerow({
-						"Name": 		     		 self._currencyList[i]["name"],
-						"Average Place (#)":     	 '{:.2f}'.format((self._currencyList[i]["avgPlace"] / self._currencyList[i]["numAvailable"])),
-						"# of Available (#)" :    	 self._currencyList[i]["numAvailable"],
-						"Average Modifier (%)":      '{:.2f}'.format((self._currencyList[i]["avgModifier"] / self._currencyList[i]["numAvailable"])),
-						"# of Unavailable (#)":   	 self._currencyList[i]["numUnavailable"],
+						"Name":				self._currencyList[i]["name"],
+						"Average Place (#)":		'{:.2f}'.format((self._currencyList[i]["avgPlace"] / self._currencyList[i]["numAvailable"])),
+						"# of Available (#)":		self._currencyList[i]["numAvailable"],
+						"Average Modifier (%)":		'{:.2f}'.format((self._currencyList[i]["avgModifier"] / self._currencyList[i]["numAvailable"])),
+						"# of Unavailable (#)":		 self._currencyList[i]["numUnavailable"],
 						"Total Spends ($)":       	 self._currencyList[i]["spends"]
 					})
 
